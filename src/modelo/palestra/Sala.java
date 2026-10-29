@@ -1,4 +1,4 @@
 package modelo.palestra;
 
-public class Sala {
+public class Sala extends Palestra{
 }
