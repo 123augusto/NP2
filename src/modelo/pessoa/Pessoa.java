@@ -1,4 +1,4 @@
 package modelo.pessoa;
 
-public class Pessoa {
+public class Pessoa{
 }

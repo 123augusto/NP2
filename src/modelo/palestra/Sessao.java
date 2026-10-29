@@ -1,4 +1,5 @@
 package modelo.palestra;
 
-public class Sessao {
+public class Sessao extends Palestra{
+
 }

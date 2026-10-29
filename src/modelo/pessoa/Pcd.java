@@ -1,4 +1,4 @@
 package modelo.pessoa;
 
-public class Pcd {
+public class Pcd extends Pessoa{
 }

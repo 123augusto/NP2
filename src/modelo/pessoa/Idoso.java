@@ -1,4 +1,4 @@
 package modelo.pessoa;
 
-public class Idoso {
+public class Idoso extends Pessoa{
 }
