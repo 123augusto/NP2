@@ -1,7 +1,7 @@
 package pagamento;
 
 public class PagamentoCartao implements Pagamento{
-    private Cartao cartao; //composicao
+    private Cartao cartao; // associação
 
     public PagamentoCartao(Cartao cartao) {
         this.cartao = cartao;
@@ -9,10 +9,11 @@ public class PagamentoCartao implements Pagamento{
 
     @Override
     public boolean pagar(float valor) {
-        return cartao.autorizar(valor);
+        return cartao != null && cartao.autorizar(valor);
     }
 
     public void setCartao(Cartao cartao) {
         this.cartao = cartao;
     }
 }
+

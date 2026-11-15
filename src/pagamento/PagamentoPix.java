@@ -9,7 +9,9 @@ public class PagamentoPix implements Pagamento{
 
     @Override
     public boolean pagar(float valor) {
-        System.out.println("Pagamento via pix " + valor + " usando a chave " + key);
+        if (!Float.isFinite(valor) || valor <= 0 || key == null || key.isBlank()) return false;
+        System.out.println("Pagamento via Pix aprovado: R$ " + valor);
         return true;
     }
 }
+
