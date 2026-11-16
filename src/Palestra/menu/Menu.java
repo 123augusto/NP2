@@ -169,6 +169,7 @@ public class Menu {
                 credencial = null;
             }
         }
+        System.out.println("Credencial válida");
         evento.listarSessoes();
         while (true) {
             int escolha = Leitor.inteiro("Sessão de entrada (0 - Voltar): ", 0, evento.quantidadeSessoes());

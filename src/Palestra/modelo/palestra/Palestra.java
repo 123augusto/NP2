@@ -65,6 +65,7 @@ public class Palestra {
         if (validarTipoPessoa(credencial.getTitular())==false) {
             return false;
         }
+
         return true;
     }
 
