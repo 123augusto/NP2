@@ -47,17 +47,6 @@ public class Ingresso {
 
     // Recria um ingresso já pago a partir dos dados salvos no arquivo
     public static Ingresso restaurar(Pessoa comprador, Sessao sessao, String codigo,
-                                     String codigoCredencial, String tipoPagamento) {
-        if (comprador == null || sessao == null) {
-            throw new IllegalArgumentException("Comprador e sessão são obrigatórios.");
-        }
-        double preco = sessao.getPalestra().getPreco();
-        double desconto = comprador.getPercentualDesconto();
-        return restaurar(comprador, sessao, codigo, codigoCredencial, tipoPagamento,
-                preco, desconto, arredondarValor(preco * (1 - desconto)));
-    }
-
-    public static Ingresso restaurar(Pessoa comprador, Sessao sessao, String codigo,
                                      String codigoCredencial, String tipoPagamento,
                                      double precoBase, double percentualDesconto, double valorCompra) {
         if (!Double.isFinite(precoBase) || precoBase < 0

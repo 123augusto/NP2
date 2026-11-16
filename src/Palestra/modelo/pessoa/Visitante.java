@@ -25,4 +25,9 @@ public class Visitante extends Pessoa {
     public boolean podeAssistirPalestra() {
         return false;
     }
+
+    @Override
+    public boolean podeComprarIngresso(){
+        return false;
+    }
 }

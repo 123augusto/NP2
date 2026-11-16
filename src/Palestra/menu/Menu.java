@@ -33,14 +33,21 @@ public class Menu {
                 System.out.println("\n=== " + evento.getNome() + " ===");
                 System.out.println("1 - Comprar ingresso | 2 - Histórico de compras | 3 - Validar credencial"
                         + " | 4 - Ingressos vendidos | 5 - Visitantes | 0 - Sair");
-                switch (Leitor.texto("Opção: ")) {
-                    case "0": executando = false; break;
-                    case "1": comprarIngresso(); break;
-                    case "2": mostrarHistorico(); break;
-                    case "3": validarCredencial(); break;
-                    case "4": bilheteria.listarIngressosVendidos(); break;
-                    case "5": bilheteria.listarVisitantes(); break;
-                    default: System.out.println("Opção inválida."); break;
+                String opcao = Leitor.texto("Opção: ");
+                if (opcao.equals("0")) {
+                    executando = false;
+                } else if (opcao.equals("1")) {
+                    comprarIngresso();
+                } else if (opcao.equals("2")) {
+                    mostrarHistorico();
+                } else if (opcao.equals("3")) {
+                    validarCredencial();
+                } else if (opcao.equals("4")) {
+                    bilheteria.listarIngressosVendidos();
+                } else if (opcao.equals("5")) {
+                    bilheteria.listarVisitantes();
+                } else {
+                    System.out.println("Opção inválida.");
                 }
             }
         } catch (NoSuchElementException e) {
@@ -55,12 +62,12 @@ public class Menu {
     }
     private void comprarIngresso() {
         Pessoa pessoa = FormularioPessoa.ler();
-        if (pessoa instanceof Visitante) {
+        if (pessoa.podeComprarIngresso()==false) {
             cadastrarVisitante((Visitante) pessoa);
             return;
         }
         Ingresso ingresso = escolherSessao(pessoa);
-        if (ingresso == null || !pagar(ingresso)) {
+        if (ingresso == null || pagar(ingresso)==false) {
             System.out.println("Compra cancelada.");
             return;
         }
@@ -106,12 +113,12 @@ public class Menu {
     // Devolve false se o usuário cancelar
     private boolean pagar(Ingresso ingresso) {
         ingresso.exibirResumo();
-        while (!ingresso.isPago()) {
+        while (ingresso.isPago()==false) {
             Pagamento forma = FormularioPagamento.ler();
             if (forma == null) {
                 return false;
             }
-            if (!ingresso.pagar(forma)) {
+            if (ingresso.pagar(forma)==false) {
                 System.out.println("Escolha outra forma de pagamento ou cancele.");
             }
         }
@@ -148,7 +155,7 @@ public class Menu {
     }
 
     private void validarCredencial() {
-        if (!bilheteria.temCredenciais()) {
+        if (bilheteria.temCredenciais()==false) {
             System.out.println("Nenhuma credencial cadastrada.");
             return;
         }

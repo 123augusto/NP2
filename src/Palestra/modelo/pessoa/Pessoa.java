@@ -19,6 +19,7 @@ public abstract class Pessoa {
         this(nome, cpf, 0, false);
     }
 
+
     private Pessoa(String nome, String cpf, int idade, boolean idadeInformada) {
         if (nomeValido(nome)==false) {
             throw new IllegalArgumentException("Informe um nome sem ponto e vírgula ou quebras de linha.");
@@ -44,6 +45,7 @@ public abstract class Pessoa {
     public boolean podeAssistirPalestra() {
         return true;
     }
+    public boolean podeComprarIngresso() { return true; }
 
     public static boolean nomeValido(String nome) {
         if(nome != null && !nome.isBlank() && !nome.contains(";") && !nome.contains("\n") && !nome.contains("\r") && nome.length() > 2)
