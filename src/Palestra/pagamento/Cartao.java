@@ -1,7 +1,8 @@
-package pagamento;
+package Palestra.pagamento;
 
 import java.time.YearMonth;
 
+// Classe abstrata: concentra o que Crédito e Débito têm em comum
 public abstract class Cartao {
     private final String numeroCartao;
     private final String validade;
@@ -13,6 +14,8 @@ public abstract class Cartao {
         this.cvv = cvv;
     }
 
+    public abstract String getTipo();
+
     public static boolean numeroValido(String numero) {
         return numero != null && numero.matches("[0-9]{16}");
     }
@@ -22,20 +25,25 @@ public abstract class Cartao {
     }
 
     public static boolean validadeValida(String validade) {
-        if (validade == null || !validade.matches("(0[1-9]|1[0-2])/[0-9]{4}")) return false;
+        if (validade == null || !validade.matches("(0[1-9]|1[0-2])/[0-9]{4}")) {
+            return false;
+        }
         int mes = Integer.parseInt(validade.substring(0, 2));
         int ano = Integer.parseInt(validade.substring(3));
         return !YearMonth.of(ano, mes).isBefore(YearMonth.now());
     }
 
     public boolean validar() {
-        return numeroValido(numeroCartao) && cvvValido(cvv) && validadeValida(validade);
+        if(numeroValido(numeroCartao) && cvvValido(cvv) && validadeValida(validade)==true)
+            return true;
+        else return false;
     }
 
-    public boolean autorizar(float valor) {
-        if (!Float.isFinite(valor) || valor <= 0 || !validar()) return false;
-        System.out.println("Cartão autorizado: R$ " + valor);
+    public boolean autorizar(double valor) {
+        if (!Double.isFinite(valor) || valor < 0 || !validar()) {
+            return false;
+        }
+        System.out.printf("Cartão autorizado: R$ %.2f%n", valor);
         return true;
     }
 }
-

@@ -1,4 +1,4 @@
-package modelo.palestra;
+package Palestra.modelo.palestra;
 
 public class Sala {
 
