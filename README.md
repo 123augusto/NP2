@@ -1,4 +1,7 @@
 # Projeto Palestra
+Augusto Leite Del Carlo Carneiro - GES - 866
+Felipe Lamy Rosa Renno - GES - 507
+Vitor Augusto do Couto ES 536
 
 Sistema de bilheteria de eventos acadêmicos feito em Java para a disciplina C06 — Programação Orientada a Objetos (NP2). O projeto roda no terminal e inclui uma programação demonstrativa com palestras, salas e horários.
 
