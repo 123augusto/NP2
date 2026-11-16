@@ -3,19 +3,32 @@ package Palestra.modelo.pessoa;
 // Classe abstrata: não existe "pessoa genérica" no evento,
 // toda pessoa é de uma categoria (Comum, Estudante, Idoso, Pcd, Visitante, Palestrante).
 public abstract class Pessoa {
+    public static final int IDADE_MINIMA = 18;
+    public static final int IDADE_MAXIMA = 120;
+
     private final String nome;
     private final String cpf;
     private final int idade;
 
     public Pessoa(String nome, String cpf, int idade) {
+        this(nome, cpf, idade, true);
+    }
+
+    // Para cadastros que não exigem idade, como a programação de palestrantes.
+    protected Pessoa(String nome, String cpf) {
+        this(nome, cpf, 0, false);
+    }
+
+    private Pessoa(String nome, String cpf, int idade, boolean idadeInformada) {
         if (nomeValido(nome)==false) {
             throw new IllegalArgumentException("Informe um nome sem ponto e vírgula ou quebras de linha.");
         }
         if (cpfValido(cpf)==false) {
             throw new IllegalArgumentException("O CPF deve conter 11 dígitos.");
         }
-        if (idade < 0) {
-            throw new IllegalArgumentException("Idade inválida.");
+        if (idadeInformada && (idade < IDADE_MINIMA || idade > IDADE_MAXIMA)) {
+            throw new IllegalArgumentException("Informe uma idade entre " + IDADE_MINIMA
+                    + " e " + IDADE_MAXIMA + " anos.");
         }
         this.nome = nome.trim();
         this.cpf = cpf;
@@ -33,7 +46,7 @@ public abstract class Pessoa {
     }
 
     public static boolean nomeValido(String nome) {
-        if(nome != null && !nome.isBlank() && !nome.contains(";") && !nome.contains("\n") && !nome.contains("\r"))
+        if(nome != null && !nome.isBlank() && !nome.contains(";") && !nome.contains("\n") && !nome.contains("\r") && nome.length() > 2)
             return true;
         else
             return false;

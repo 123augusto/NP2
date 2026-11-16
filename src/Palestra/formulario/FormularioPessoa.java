@@ -17,7 +17,9 @@ public class FormularioPessoa {
     public static Pessoa ler() {
         String nome = Leitor.nome();
         String cpf = Leitor.cpf();
-        int idade = Leitor.inteiro("Idade: ", 0, 130);
+        int idade = Leitor.inteiro(
+                "Idade (" + Pessoa.IDADE_MINIMA + " a " + Pessoa.IDADE_MAXIMA + " anos): ",
+                Pessoa.IDADE_MINIMA, Pessoa.IDADE_MAXIMA);
 
         while (true) {
             System.out.println("1 - Comum | 2 - Estudante | 3 - Idoso | 4 - PCD | 5 - Visitante");

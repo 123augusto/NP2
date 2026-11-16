@@ -173,7 +173,10 @@ public class Arquivo {
             case "ESTUDANTE": pessoa = new Estudante(nome, cpf, idade, extra1, Integer.parseInt(extra2)); break;
             case "IDOSO": pessoa = new Idoso(nome, cpf, idade); break;
             case "PCD": pessoa = new Pcd(nome, cpf, idade, extra1); break;
-            case "PALESTRANTE": pessoa = new Palestrante(nome, cpf, idade, extra1); break;
+            case "PALESTRANTE":
+                pessoa = idade == 0 ? new Palestrante(nome, cpf, extra1)
+                        : new Palestrante(nome, cpf, idade, extra1);
+                break;
             default: throw new IllegalArgumentException("categoria desconhecida: " + categoria);
         }
         return pessoa;

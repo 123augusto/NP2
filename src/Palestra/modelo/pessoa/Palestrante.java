@@ -10,7 +10,8 @@ public class Palestrante extends Pessoa {
 
     // Sobrecarga de construtor: quando a idade não é informada
     public Palestrante(String nome, String cpf, String instituicao) {
-        this(nome, cpf, 0, instituicao); // chama o construtor de cima
+        super(nome, cpf);
+        this.instituicao = textoSeguro(instituicao, "Instituição");
     }
 
     @Override
